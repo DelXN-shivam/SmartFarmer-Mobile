@@ -1,0 +1,72 @@
+name: smart_farmer
+description: "SmartFarmer - A comprehensive farming management application with AI insights"
+publish_to: 'none'
+version: 1.0.0
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  
+  # State Management
+  flutter_bloc: ^8.1.4
+  equatable: ^2.0.5
+  
+  # Local Storage
+  sqflite: ^2.3.2
+  shared_preferences: ^2.2.2
+  path: ^1.8.3
+  
+  # Location Services
+  geolocator: ^11.0.0
+  permission_handler: ^11.3.1
+  geocoding: ^2.1.0
+  camera: ^0.10.5
+  
+  # Image Handling
+  image: ^4.0.17
+  image_picker: ^1.0.7
+  # file_picker: ^6.1.1
+  file_picker: ^10.2.0
+  
+  # UI Components
+  fl_chart: ^0.68.0
+  intl: ^0.20.2
+  cupertino_icons: ^1.0.6
+  google_fonts: ^6.2.1
+  
+  # HTTP and API
+  http: ^1.2.1
+  dio: ^5.4.1
+  
+  # Utilities
+  uuid: ^4.3.3
+  crypto: ^3.0.3
+  flutter_animate: ^4.5.2
+  auto_size_text: ^3.0.0
+  flutter_svg: ^2.2.0
+  url_launcher: ^6.3.2
+ 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_screenutil: ^5.9.3
+  cloudinary_public: ^0.23.1
+  flutter_launcher_icons: ^0.14.4
+ 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/smart-farmingLogo.png"
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/icons/
