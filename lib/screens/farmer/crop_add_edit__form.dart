@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:smart_farmer/screens/farmer/CameraScreen.dart';
+import 'package:smart_farmer/screens/farmer/camera_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -404,16 +404,17 @@ class _CropDetailsFormState extends State<CropDetailsForm> {
               onChanged: _applicationStatus == 'verified'
                   ? null
                   : (value) {
-                setState(() {
-                  _filteredCrops = AppConstants.maharashtraCrops
-                      .where(
-                        (crop) =>
-                            crop.toLowerCase().contains(value.toLowerCase()),
-                      )
-                      .toList();
-                  _showSuggestions = value.isNotEmpty;
-                });
-              },
+                      setState(() {
+                        _filteredCrops = AppConstants.maharashtraCrops
+                            .where(
+                              (crop) => crop.toLowerCase().contains(
+                                value.toLowerCase(),
+                              ),
+                            )
+                            .toList();
+                        _showSuggestions = value.isNotEmpty;
+                      });
+                    },
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter crop name';
@@ -767,12 +768,12 @@ class _CropDetailsFormState extends State<CropDetailsForm> {
                   onChanged: _applicationStatus == 'verified'
                       ? null
                       : (String? newValue) {
-                    if (newValue != null) {
-                      setState(() {
-                        _selectedAreaUnit = newValue;
-                      });
-                    }
-                  },
+                          if (newValue != null) {
+                            setState(() {
+                              _selectedAreaUnit = newValue;
+                            });
+                          }
+                        },
                 ),
               ),
             ),
@@ -860,29 +861,29 @@ class _CropDetailsFormState extends State<CropDetailsForm> {
           onTap: _applicationStatus == 'verified'
               ? null
               : () async {
-            final DateTime? picked = await showDatePicker(
-              context: context,
-              initialDate: value,
-              firstDate: DateTime(2020),
-              lastDate: DateTime(2030),
-              builder: (context, child) {
-                return Theme(
-                  data: Theme.of(context).copyWith(
-                    colorScheme: const ColorScheme.light(
-                      primary: Color(0xFF4CAF50),
-                      onPrimary: Colors.white,
-                      surface: Colors.white,
-                      onSurface: Colors.black,
-                    ),
-                  ),
-                  child: child!,
-                );
-              },
-            );
-            if (picked != null) {
-              onChanged(picked);
-            }
-          },
+                  final DateTime? picked = await showDatePicker(
+                    context: context,
+                    initialDate: value,
+                    firstDate: DateTime(2020),
+                    lastDate: DateTime(2030),
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: const ColorScheme.light(
+                            primary: Color(0xFF4CAF50),
+                            onPrimary: Colors.white,
+                            surface: Colors.white,
+                            onSurface: Colors.black,
+                          ),
+                        ),
+                        child: child!,
+                      );
+                    },
+                  );
+                  if (picked != null) {
+                    onChanged(picked);
+                  }
+                },
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -1274,7 +1275,7 @@ class _CropDetailsFormState extends State<CropDetailsForm> {
   Widget _buildActionSection(String langCode) {
     final bool isVerified = _applicationStatus == 'verified';
     final bool canEdit = _applicationStatus != 'verified';
-    
+
     return Column(
       children: [
         if (canEdit)
@@ -1371,10 +1372,7 @@ class _CropDetailsFormState extends State<CropDetailsForm> {
               const SizedBox(width: 12),
               const Text(
                 'Status: ',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
               ),
               Text(
                 _getStatusText(),
@@ -1412,9 +1410,7 @@ class _CropDetailsFormState extends State<CropDetailsForm> {
         final respStr = await response.stream.bytesToString();
         debugPrint('Cloudinary upload failed: $respStr');
         if (mounted) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
                 'Cloudinary error: $respStr',
@@ -1556,9 +1552,7 @@ class _CropDetailsFormState extends State<CropDetailsForm> {
       );
       if (cameras.isEmpty) {
         if (mounted) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text(
                 'No cameras available',
